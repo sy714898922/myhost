@@ -1,0 +1,36 @@
+server:
+  port: 8802   #服务端口
+spring:
+  application:
+    name: zuulservice   #指定服务名
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  zuul:
+    routes:
+      api-a:
+        path: /consumer/**
+        service-id: consumer
+    #consumer: /bb/** #这个名字是任意写的   ②简化配置:用bb来替换conmuser服务
+  retryable: true
+
+#Zuul中默认就已经集成了Ribbon负载均衡和Hystrix熔断机制
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 读取超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 0 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 # 熔断超时时长：3ms zuul集成的Hystrix的超时时间
