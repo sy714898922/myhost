@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet"></head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+    #menu {
+        font:12px verdana, arial, sans-serif; /* 设置文字大小和字体样式 */
+        width: 100%;
+    }
+    #menu, #menu li {
+        list-style:none; /* 将默认的列表符号去掉 */
+        padding:0; /* 将默认的内边距去掉 */
+        margin:0; /* 将默认的外边距去掉 */
+        float: right; /* 往左浮动 */
+        display:block;
+    }
+    #menu li a {
+        display:inline-block; /* 将链接设为块级元素 */
+        width:80px; /* 设置宽度 */
+        height:30px; /* 设置高度 */
+        line-height:30px; /* 设置行高，将行高和高度设置同一个值，可以让单行文本垂直居中 */
+        text-align:center; /* 居中对齐文字 */
+        /*background:#91C5D4; !* 设置背景色 *!
+        color:#fff; !* 设置文字颜色 *!*/
+        /*text-decoration:#151515;  去掉下划线 */
+       /* border-right:1px solid #000; !* 在左侧加上分隔线 *!*/
+    }
+    /*#menu li a.last {
+        border-right:0; !* 去掉左侧边框 *!
+    }*/
+</style>
+
+</head>
+<body>
+<br>
+<table cellSpacing="1" cellPadding="0" width="50%" align="right" >
+    <tbody>
+    <tr align="center">
+        <td class="ta_01" align="center">
+            <strong>列表</strong>
+        </td>
+    </tr>
+    <tr>
+        <td class="ta_01" align="right">
+            <button type="button"  id="add" name="add" value="添加" class="button_add" onclick="addHero()">add</button>
+
+        </td>
+    </tr>
+    <tr align="center">
+        <td class="ta_01" align="center">
+            <table cellspacing="0" cellpadding="1" rules="all"
+                   border="1" id="DataGrid1">
+                <tr>
+
+                    <td align="center" width="20%">
+                        序号
+                    </td>
+                    <td align="center" width="25%">
+                        姓名
+                    </td>
+                    <td align="center" width="25%">
+                        年龄
+                    </td>
+                    <td width="15%" align="center">
+                        编辑
+                    </td>
+                    <td width="15%" align="center">
+                        删除
+                    </td>
+                </tr>
+                <tr th:each="user:${users}">
+                    <td align="center" width="20%" th:text="${user.id}">
+                        序号
+                    </td>
+                    <td align="center" width="25%" th:text="${user.name}">
+                        姓名
+                    </td>
+                    <td align="center" width="25%" th:text="${user.age}">
+                        年龄
+                    </td>
+                    <td width="15%" align="center">
+                        编辑
+                    </td>
+                    <td width="15%" align="center">
+                        删除
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tbody>
+</table>
+
+    <ui id="menu">
+        <li><p><a th:href="@{/hello?pageNum=1}">首页</a></p></li>
+        <li th:switch="${pageNum}" >
+            <p th:case="1"><a th:href="@{/hello?pageNum=1}">上一页</a></p>
+            <p th:case="*"><a th:href="@{/hello(pageNum=${pageNum-1})}">上一页</a></p>
+        </li>
+        <li th:switch="${pageNum}" >
+            <p th:case="${totalPages}"><a th:href="@{/hello(pageNum=${totalPages})}">下一页</a></p>
+            <p th:case="*"><a th:href="@{/hello(pageNum=${pageNum+1})}">下一页</a></p>
+        </li>
+        <li ><p><a th:href="@{/hello(pageNum=${totalPages})}">尾页</a></p></li>
+    </ui>
+</body>
+</html>
