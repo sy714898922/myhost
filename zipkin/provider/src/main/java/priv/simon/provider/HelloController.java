@@ -21,7 +21,7 @@ public class HelloController {
 
     @ApiOperation("获取全部书籍信息")
     @GetMapping(
-            value = {" "}
+            value = {"/getAllbooks"}
     )
     public List getBooks() {
         List<Book> list = new ArrayList(this.BookMap.values());
@@ -39,7 +39,7 @@ public class HelloController {
 //            dataType = "Book"
 //    )
     @PostMapping(
-            value = {""}
+            value = {"/postBook"}
     )
     public String PostBook(@RequestBody Book book) {
         this.BookMap.put(book.getId(), book);
@@ -57,7 +57,7 @@ public class HelloController {
 //            dataType = "Book"
 //    )
     @GetMapping(
-            value = {"/{id} "}
+            value = {"getBookById/{id} "}
     )
     public Book getNameById(@PathVariable String id) {
         Book book = (Book)this.BookMap.get(id);
@@ -81,7 +81,7 @@ public class HelloController {
 //            dataType = "Book"
 //    )})
     @PutMapping(
-            value = {"/{id}"}
+            value = {"updateBook/{id}"}
     )
     public String upDateBook(@PathVariable String id, @RequestBody Book book) {
         Book b = (Book)this.BookMap.get(id);
@@ -103,7 +103,7 @@ public class HelloController {
 //            paramType = "Path"
 //    )
     @DeleteMapping(
-            value = {"/{id}"}
+            value = {"deletBook/{id}"}
     )
     public String delBook(@PathVariable String id) {
         this.BookMap.remove(id);
