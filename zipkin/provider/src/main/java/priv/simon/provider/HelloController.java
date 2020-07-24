@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 import priv.simon.bean.Book;
 
 @RestController
@@ -23,9 +20,8 @@ public class HelloController {
     }
 
     @ApiOperation("获取全部书籍信息")
-    @RequestMapping(
-            value = {" "},
-            method = {RequestMethod.GET}
+    @GetMapping(
+            value = {" "}
     )
     public List getBooks() {
         List<Book> list = new ArrayList(this.BookMap.values());
@@ -42,9 +38,8 @@ public class HelloController {
             required = true,
             dataType = "Book"
     )
-    @RequestMapping(
-            value = {""},
-            method = {RequestMethod.POST}
+    @PostMapping(
+            value = {""}
     )
     public String PostBook(@RequestBody Book book) {
         this.BookMap.put(book.getId(), book);
@@ -61,9 +56,8 @@ public class HelloController {
             required = true,
             dataType = "Book"
     )
-    @RequestMapping(
-            value = {"/{id} "},
-            method = {RequestMethod.GET}
+    @GetMapping(
+            value = {"/{id} "}
     )
     public Book getNameById(@PathVariable String id) {
         Book book = (Book)this.BookMap.get(id);
@@ -86,9 +80,8 @@ public class HelloController {
             required = true,
             dataType = "Book"
     )})
-    @RequestMapping(
-            value = {"/{id}"},
-            method = {RequestMethod.PUT}
+    @PutMapping(
+            value = {"/{id}"}
     )
     public String upDateBook(@PathVariable String id, @RequestBody Book book) {
         Book b = (Book)this.BookMap.get(id);
@@ -109,9 +102,8 @@ public class HelloController {
             dataType = "String",
             paramType = "Path"
     )
-    @RequestMapping(
-            value = {"/{id}"},
-            method = {RequestMethod.DELETE}
+    @DeleteMapping(
+            value = {"/{id}"}
     )
     public String delBook(@PathVariable String id) {
         this.BookMap.remove(id);

@@ -1,6 +1,7 @@
 package priv.simon.consumer.Controller;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import priv.simon.consumer.ExceptionUtil.MyException;
@@ -9,7 +10,7 @@ import priv.simon.consumer.ExceptionUtil.ResultUtil;
 
 @RestController
 public class ExceptionController {
-    @RequestMapping("/exception")
+    @GetMapping("/exception")
     public Result exception(String name, String pwd) throws Exception {
         String realname="zhangsan";
         String realPwd="123";
@@ -27,7 +28,7 @@ public class ExceptionController {
         String info="你好["+name+"]!";
         return ResultUtil.success(info);
     }
-    @RequestMapping("/success")
+    @GetMapping("/success")
     public Result success() throws Exception {
         return ResultUtil.success(200,"自定义消息");
     }
