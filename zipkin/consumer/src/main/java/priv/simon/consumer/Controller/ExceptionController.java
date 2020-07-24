@@ -15,18 +15,19 @@ public class ExceptionController {
     public Result exception(@PathVariable("name") String name, @PathVariable("pwd") String pwd) throws Exception {
         String realname="zhangsan";
         String realPwd="123";
+        String info=null;
 
         if(null!=name&&name.equals("xx")){
             throw new Exception("系统异常！");
         }
         if(StringUtils.isEmpty(name)||StringUtils.isEmpty(pwd)){
             throw new MyException("参数必须传！");
-        }else if (!name.equals(realname)||!pwd.equals(realPwd)){
-            throw new MyException("用户名或密码不正确！");
-        }else if (name.equals("aa")){
-            throw new MyException("成功",200);
         }
-        String info="你好["+name+"]!";
+        if (!name.equals(realname)||!pwd.equals(realPwd)){
+            throw new MyException("用户名或密码不正确！");
+        }else {
+             info="你好["+name+"]!";
+        }
         return ResultUtil.success(info);
     }
     @GetMapping("/success")
