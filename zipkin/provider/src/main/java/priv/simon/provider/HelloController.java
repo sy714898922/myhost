@@ -28,16 +28,16 @@ public class HelloController {
         return list;
     }
 
-    @ApiOperation(
-            value = "添加书籍",
-            notes = "根据book创建书籍"
-    )
-    @ApiImplicitParam(
-            name = "book",
-            value = "书籍名字",
-            required = true,
-            dataType = "Book"
-    )
+//    @ApiOperation(
+//            value = "添加书籍",
+//            notes = "根据book创建书籍"
+//    )
+//    @ApiImplicitParam(
+//            name = "book",
+//            value = "书籍名字",
+//            required = true,
+//            dataType = "Book"
+//    )
     @PostMapping(
             value = {""}
     )
@@ -46,16 +46,16 @@ public class HelloController {
         return "添加成功~~~";
     }
 
-    @ApiOperation(
-            value = "查询书籍",
-            notes = "根据id查询书籍"
-    )
-    @ApiImplicitParam(
-            name = "id",
-            value = "书籍id",
-            required = true,
-            dataType = "Book"
-    )
+//    @ApiOperation(
+//            value = "查询书籍",
+//            notes = "根据id查询书籍"
+//    )
+//    @ApiImplicitParam(
+//            name = "id",
+//            value = "书籍id",
+//            required = true,
+//            dataType = "Book"
+//    )
     @GetMapping(
             value = {"/{id} "}
     )
@@ -64,22 +64,22 @@ public class HelloController {
         return book;
     }
 
-    @ApiOperation(
-            value = "跟新书籍",
-            notes = "跟新书籍信息"
-    )
-    @ApiImplicitParams({@ApiImplicitParam(
-            name = "id",
-            value = "书籍id",
-            required = true,
-            paramType = "path",
-            dataType = "String"
-    ), @ApiImplicitParam(
-            name = "book",
-            value = "书籍实体",
-            required = true,
-            dataType = "Book"
-    )})
+//    @ApiOperation(
+//            value = "跟新书籍",
+//            notes = "跟新书籍信息"
+//    )
+//    @ApiImplicitParams({@ApiImplicitParam(
+//            name = "id",
+//            value = "书籍id",
+//            required = true,
+//            paramType = "path",
+//            dataType = "String"
+//    ), @ApiImplicitParam(
+//            name = "book",
+//            value = "书籍实体",
+//            required = true,
+//            dataType = "Book"
+//    )})
     @PutMapping(
             value = {"/{id}"}
     )
@@ -90,18 +90,18 @@ public class HelloController {
         this.BookMap.put(id, b);
         return "更新成功";
     }
-
-    @ApiOperation(
-            value = "删除书籍",
-            notes = "根据id删除书籍"
-    )
-    @ApiImplicitParam(
-            name = "id",
-            value = "书籍id",
-            required = true,
-            dataType = "String",
-            paramType = "Path"
-    )
+//
+//    @ApiOperation(
+//            value = "删除书籍",
+//            notes = "根据id删除书籍"
+//    )
+//    @ApiImplicitParam(
+//            name = "id",
+//            value = "书籍id",
+//            required = true,
+//            dataType = "String",
+//            paramType = "Path"
+//    )
     @DeleteMapping(
             value = {"/{id}"}
     )
