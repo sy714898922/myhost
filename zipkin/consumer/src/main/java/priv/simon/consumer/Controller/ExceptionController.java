@@ -30,8 +30,8 @@ public class ExceptionController {
         }
         return ResultUtil.success(info);
     }
-    @GetMapping("/success")
-    public Result success() throws Exception {
-        return ResultUtil.success(200,"自定义消息");
+    @GetMapping("/success/{data}")
+    public Result success(@PathVariable("data") String data) throws Exception {
+        return ResultUtil.success(200,data);
     }
 }
