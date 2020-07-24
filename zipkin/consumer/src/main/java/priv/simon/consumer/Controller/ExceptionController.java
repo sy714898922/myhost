@@ -2,6 +2,7 @@ package priv.simon.consumer.Controller;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import priv.simon.consumer.ExceptionUtil.MyException;
@@ -10,8 +11,8 @@ import priv.simon.consumer.ExceptionUtil.ResultUtil;
 
 @RestController
 public class ExceptionController {
-    @GetMapping("/exception")
-    public Result exception(String name, String pwd) throws Exception {
+    @GetMapping("/exception/{name}/{pwd}")
+    public Result exception(@PathVariable("name") String name, @PathVariable("pwd") String pwd) throws Exception {
         String realname="zhangsan";
         String realPwd="123";
 
